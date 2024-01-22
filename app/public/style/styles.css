@@ -1,11 +1,55 @@
 /*  Navbar */
 
+
+.container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
 .navList{
 text-decoration: none;
+list-style-type: none;
 list-style: none;
 display: flex;
 justify-content: space-between;
 align-items: center;
-
+margin-left: 150px;
+margin-right: 150px;
+margin-top: 100px;
 }
 
+.imgList{
+    height: 50%;
+    width: 50%;
+}
+
+.cat{
+    text-decoration: none;
+    list-style-type: none;
+}
+
+
+/* login */
+
+.bg-image-vertical {
+position: relative;
+overflow: hidden;
+background-repeat: no-repeat;
+background-position: right center;
+background-size: auto 100%;
+}
+
+@media (min-width: 1025px) {
+.h-custom-2 {
+height: 100%;
+}
+}
