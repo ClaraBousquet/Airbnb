@@ -94,29 +94,17 @@ public function formLogement()
 }
 
 
-// #[Route('/submitLogement', name: 'submitLogement')]
-// public function submitLogement(Request $request, EntityManagerInterface $entityManager)
-// {
-//     $house = new House();
+#[Route('/submitLogement', name: 'submitLogement')]
+public function submitLogement(Request $request, EntityManagerInterface $entityManager)
+{
+    $house = new House();
 
-//     $form = $this->createForm(House::class, $house);
-
-//     $form->handleRequest($request);
-
-//     if($form->isSubmitted() && $form->isValid())
-//     {
-//         foreach ($house->getImages() as $image) 
-//         {
-//             $image->setHouse($house);
-//             $entityManager->persist($image);
-//         }
-
-// $house->setName($this->)
+   
     
-//     $entityManager->flush();
+    $entityManager->flush();
 
 
-//     return $this->redirectToRoute('accueil');
-// }
+    return $this->redirectToRoute('accueil');
+}
  
- }
+}
