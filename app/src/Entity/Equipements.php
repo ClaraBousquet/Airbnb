@@ -15,15 +15,21 @@ class Equipements
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: annonce::class, inversedBy: 'equipements')]
+
+
+    #[ORM\ManyToMany(targetEntity: Annonce::class, inversedBy: 'equipements')]
     private Collection $annonce;
 
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
+     #[ORM\ManyToMany(targetEntity: House::class, mappedBy: 'equipements')]
+    private Collection $houses;
+
     public function __construct()
     {
         $this->annonce = new ArrayCollection();
+        $this->houses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -66,4 +72,33 @@ class Equipements
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, House>
+     */
+    public function getHouses(): Collection
+    {
+        return $this->houses;
+    }
+
+     public function addHouse(House $house): static
+    {
+        if (!$this->houses->contains($house)) {
+            $this->houses->add($house);
+            $house->getEquipements()->add($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHouse(House $house): static
+    {
+        if ($this->houses->removeElement($house)) {
+            $house->getEquipements()->removeElement($this);
+        }
+
+        return $this;
+    }
+
+ 
 }

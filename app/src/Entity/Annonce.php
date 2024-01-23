@@ -16,7 +16,7 @@ class Annonce
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'annonces')]
-    private ?house $house = null;
+    private ?House $house = null;
 
     #[ORM\ManyToOne(inversedBy: 'annonce')]
     private ?Category $category = null;
@@ -25,7 +25,7 @@ class Annonce
     private Collection $equipements;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?user $user = null;
+    private ?User $user = null;
 
     #[ORM\Column(length: 255)]
     private ?string $images = null;

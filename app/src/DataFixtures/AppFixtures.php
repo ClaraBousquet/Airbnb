@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\House;
+use App\Entity\Category;
 use App\Entity\Equipements;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -13,6 +15,8 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create(locale: 'fr_FR');
         $this->loadEquipments($manager);
+        $this->loadCategory($manager);
+        $this->loadHouses($manager);
         $manager->flush();
     }
 
@@ -77,5 +81,44 @@ class AppFixtures extends Fixture
             $Equipement->setLabel($equipement['label']);
             $manager->persist($Equipement);
         }
+    }
+
+    public function loadCategory(ObjectManager $manager): void
+
+    {
+        $category = [
+            ['label'=>'Cabane'],
+   [ 'label'=>'Camping'],
+   ['label'=>'Chateau'],
+   [ 'label'=>'Bord de mer'],
+   [ 'label'=>'Surf'],
+        ];
+
+        foreach ($category as $category) {
+            $Category = new Category();
+            $Category->setLabel($category['label']);
+            $manager->persist($Category);
+        }
+    }
+
+
+    public function loadHouses(ObjectManager $manager): void
+    {
+        $category = new Category();
+        $category->setLabel('Cabane');
+        
+        // Créer une maison
+        $house = new House();
+        $house->setName('Cabane');
+        $house->setDescription('Cabane de campagne');
+        $house->setCategory($category);
+        $house->setImagePath('public/images/cabane.jpg'); 
+        $house->setNumberGuest(2);
+        $house->setNumberRooms(1);
+
+        // Persistez les entités
+        $manager->persist($category);
+        $manager->persist($house);
+
     }
 }

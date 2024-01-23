@@ -24,9 +24,6 @@ class Category
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: annonce::class)]
     private Collection $annonce;
 
-    #[ORM\Column(length: 255)]
-    private ?string $imagePath = null;
-
     public function __construct()
     {
         $this->house = new ArrayCollection();
@@ -110,15 +107,4 @@ class Category
         return $this;
     }
 
-    public function getImagePath(): ?string
-    {
-        return $this->imagePath;
-    }
-
-    public function setImagePath(string $imagePath): static
-    {
-        $this->imagePath = $imagePath;
-
-        return $this;
-    }
 }

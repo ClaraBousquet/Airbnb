@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un Logement{% endblock %}
+
+{% block body %}
+
+<form action="{{ path('submitLogement')}}" method="post" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Nom du logement</label>
+    <input type="text" class="form-control" name="house[name]" id="exampleFormControlInput1" placeholder="Nom du logement">
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Nombre de chambres</label>
+    <select name="house[numberRooms]" class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+     <option>9</option>
+    <option>10</option>
+
+
+      
+    </select>
+  </div>
+
+
+    <div class="form-group">
+    <label for="exampleFormControlSelect1">Nombre de Voyageurs</label>
+    <select name="house[numberGuest]" class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+     <option>9</option>
+    <option>10</option>
+
+
+      
+    </select>
+  </div>
+
+
+<!-- Boucle pour choisir un type -->
+
+<div class="form-group">
+    <label for="categorySelect">Catégorie</label>
+    <select name="house[category]" class="form-control" id="categorySelect">
+        {% for category in category %}
+            <option value="{{ category.id }}">{{ category.label }}</option>
+        {% endfor %}
+    </select>
+</div>
+
+
+
+<!-- Boucle for pour ajouter des équipements -->
+
+{% for equipement in equipements %}
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="house[equipements][]" value="{{ equipement.id }}" id="equipement-{{ equipement.id }}">
+        <label class="form-check-label" for="equipement-{{ equipement.id }}">
+            {{ equipement.label }}
+        </label>
+    </div>
+{% endfor %}
+
+
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Description de l'hébergement</label>
+    <textarea name="house[description]" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Ajouter une photo du logement</label>
+    <input type="file" name="house[imagePath]" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+  <button type="submit">Ajouter</button>
+</form>
+
+{% endblock %}

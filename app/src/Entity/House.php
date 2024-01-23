@@ -24,9 +24,27 @@ class House
     #[ORM\ManyToOne(inversedBy: 'house')]
     private ?Category $category = null;
 
+
+    #[ORM\ManyToMany(targetEntity: Equipements::class, inversedBy: 'houses')]
+private Collection $equipements;
+
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $name = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imagePath = null;
+
+    #[ORM\Column]
+    private ?string $numberRooms = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $numberGuest = null;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
+        $this->equipements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +102,77 @@ class House
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+
+
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(?string $imagePath): static
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    public function getNumberRooms(): ?string
+    {
+        return $this->numberRooms;
+    }
+
+    public function setNumberRooms(string $numberRooms): static
+    {
+        $this->numberRooms = $numberRooms;
+
+        return $this;
+    }
+
+    public function getNumberGuest(): ?string
+    {
+        return $this->numberGuest;
+    }
+
+    public function setNumberGuest(?string $numberGuest): static
+    {
+        $this->numberGuest = $numberGuest;
+
+        return $this;
+    }
+
+
+
+    /**
+     * @return Collection<int, Equipements>
+     */
+    public function getEquipements(): Collection
+    {
+        return $this->equipements;
+    }
+
+    public function addEquipements(Equipements $equipements): static
+    {
+        if (!$this->equipements->contains($equipements)) {
+            $this->equipements->add($equipements);
+            $equipements->addHouse($this);
+        }
 
         return $this;
     }

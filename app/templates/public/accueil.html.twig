@@ -1,87 +1,159 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} 
 
-{% block title %}airbnb{% endblock %}
+ 
 
-{% block body %}
+{% block title %}airbnb{% endblock %} 
 
-<img src="{{ asset('images/logo.png')}}" alt="logo">
+ 
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container">
+{% block body %} 
 
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Destination" aria-label="Search">
-            </form>
-            </li>
-            <li class="nav-item">
-                <label for="arrival-date">Arrivée</label>
-                <input type="date" id="arrival-date" name="arrival-date">
-            </li>
-   <li class="nav-item">
-      <label for="departure-date">Départ</label>
-      <input type="date" id="departure-date" name="departure-date">
-    </li>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-            </li>
-            </li>
-         
-            </li>
-            <li class="nav-item dropdown">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Voyageurs
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-            </li>
-            </li>
-            </li>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search">
-               <i class="bi bi-search"> <button class="btn btn-outline-success" type="submit"></button></i>
-            </form>
-            <div class="d-grid gap-2 d-md-block">
-                <a href="{{ path('login')}}"><button class="btn btn-danger" type="button">Se Connecter</button></a>
-            </div>
-
-            </li>
-            </ul>
+ 
 
 
+ 
+
+<header>
+  <div class="empty">
+    <div class="top-navigation">
+      <div class="logo"><a href="#"><img src="{{ asset('images/logo.png')}}" alt=""></a></div>
+    <nav> 
+      <div class="nav-menu">
+          <ul>
+            <li><a href="#" class="nav-link">Places to stay</a></li>           
+            <li><a href="#" class="nav-link">Experiences</a></li>
+            <li><a href="#" class="nav-link">Online Experiences</a></li>
+          </ul>
         </div>
-    </div>
-</nav>
-<ul class="navList">
-    <a href="{{ path('listcabane')}}">
-        <img class="imgList" src="{{ asset('images/cabane.jpg')}}" alt="cabane">
-        <li class="cat">Cabane <br> </li>
-    </a>
-    <a href="{{ path('listcamping')}}">
-        <img class="imgList" src="{{ asset('images/camping.jpg')}}" alt="camping">
-        <li class="cat">Camping <br></li>
-    </a>
-    <a href="{{ path ('listsurf')}}">
-        <img class="imgList" src="{{ asset('images/surf.jpg')}}" alt="surf">
-        <li class="cat">Surf <br> </li>
-    </a>
-    <a href="{{ path ('listmer')}}">
-        <img class="imgList" src="{{ asset('images/mer.jpg')}}" alt="mer">
-        <li class="cat">Bord de Mer <br> </li>
-    </a>
-    <a href="{{ path ('listchateau')}}">
-        <img class="imgList" src="{{ asset('images/chateau.png')}}" alt="chateau">
-        <li class="cat">Chateau <br></li>
-    </a>
-</ul>
 
-{% endblock %}
+          <form class="search"> 
+            <div class="search-inputs">
+              <label for="location"> 
+                <div class="label">Location</div>
+                <input name="location" id="location" placeholder="Where are you going?"/>
+              </label>
+              
+            </div>
+            <div class="search-inputs">
+              <label for="check-in"> 
+                <div class="label">Check in</div>
+                <input type="date" name="check-in" id="check-in" placeholder="Add dates"/>
+              </label>
+            </div>
+            <div class="search-inputs">
+              <label for="check-out"> 
+                <div class="label">Check out</div>
+                <input type="date" name="check-out" id="check-out" placeholder="Add dates"/>
+              </label>
+            </div>
+            <div class="search-inputs">
+              <label for="guests"> 
+                <div class="label">Guests</div>
+    <select name="house[numberGuest]" class="form-control" id="exampleFormControlSelect1">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+     <option>9</option>
+    <option>10</option>
+
+
+      
+    </select>
+  </div>
+<a href="{{ path('login')}}"><button class="btn btn-danger" type="button">Se Connecter</button></a> 
+<a href="{{ path('formLogement')}}"><button class="btn btn-danger" type="button">Ajouter un logement</button></a>
+
+              </label>
+      <div class="cta"> 
+        <div>Become a host</div>
+        <button>
+          <i class="fas fa-globe"></i>
+          <i class="fas fa-chevron-down"></i>
+        </button>
+            </div>
+            <div class="search-button">
+              <button onclick="preventDefault()"><i class="fas fa-search fa-xs"></i></button>
+            </div>
+          </form>
+      </nav> <!--   End nav   -->
+
+        <div class="profile-menu">
+          <div class="menu">
+            <span class="fas fa-grip-lines"></span>
+          </div>
+          <div class="profile-pic">
+            <span class="fas fa-user"></span>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div> 
+</header> 
+
+
+
+
+
+
+<div class="list-container"> 
+
+<ul class="navList"> 
+
+<a href="{{ path('listcabane')}}"> 
+
+<img class="imgList" src="{{ asset('images/cabane.jpg')}}" alt="cabane"> 
+
+<li class="cat">Cabane <br> </li> 
+
+</a> 
+
+<a href="{{ path('listcamping')}}"> 
+
+<img class="imgList" src="{{ asset('images/camping.jpg')}}" alt="camping"> 
+
+<li class="cat">Camping <br></li> 
+
+</a> 
+
+<a href="{{ path ('listsurf')}}"> 
+
+<img class="imgList" src="{{ asset('images/surf.jpg')}}" alt="surf"> 
+
+<li class="cat">Surf <br> </li> 
+
+</a> 
+
+<a href="{{ path ('listmer')}}"> 
+
+<img class="imgList" src="{{ asset('images/mer.jpg')}}" alt="mer"> 
+
+<li class="cat">Bord de Mer <br> </li> 
+
+</a> 
+
+<a href="{{ path ('listchateau')}}"> 
+
+<img class="imgList" src="{{ asset('images/chateau.png')}}" alt="chateau"> 
+
+<li class="cat">Chateau <br></li> 
+
+</a> 
+
+</ul></div> 
+
+{% endblock %} 
+
+ 
+
+ 
+
+ 
+
+ 
