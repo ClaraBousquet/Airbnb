@@ -10,10 +10,11 @@
             <tr>
                 <th>Id</th>
                 <th>Description</th>
-                <th>Name</th>
-                <th>ImagePath</th>
-                <th>NumberRooms</th>
-                <th>NumberGuest</th>
+                <th>Nom</th>
+                <th>Image</th>
+                <th>Nombre de chambres</th>
+                <th>nombre de personnes max</th>
+                <th>Prix par nuit</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,6 +27,7 @@
                 <td>{{ house.imagePath }}</td>
                 <td>{{ house.numberRooms }}</td>
                 <td>{{ house.numberGuest }}</td>
+                <td>{{ house.price }}</td>
                 <td>
                     <a href="{{ path('app_house_show', {'id': house.id}) }}">show</a>
                     <a href="{{ path('app_house_edit', {'id': house.id}) }}">edit</a>

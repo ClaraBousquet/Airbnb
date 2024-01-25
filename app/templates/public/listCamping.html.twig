@@ -1,1 +1,17 @@
-<h1>Liste campings</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des campings{% endblock %}
+
+{% block body %}
+<h1>Liste des campings</h1>
+
+{% for house in houses %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ house.name }}</h5>
+        <p class="card-text">{{ house.description }}</p>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

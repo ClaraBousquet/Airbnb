@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New House{% endblock %}
+{% block title %}Ajouter un logement{% endblock %}
 
 {% block body %}
-    <h1>Create new House</h1>
-
+    <h1>Ajouter un logement</h1>
+<div class="formstyle">
     {{ include('house/_form.html.twig') }}
-
+</div>
     <a href="{{ path('app_house_index') }}">back to list</a>
 {% endblock %}

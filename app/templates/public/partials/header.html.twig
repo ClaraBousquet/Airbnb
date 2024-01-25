@@ -1,12 +1,6 @@
-{% extends 'base.html.twig' %} 
 
- 
+{% extends 'base.html.twig' %}
 
-{% block title %}airbnb{% endblock %} 
-
- 
-
-{% block body %} 
 <header>
   <div class="containerBod">
   <div class="empty">
@@ -67,7 +61,7 @@
         </button>
             </div>
             <div class="search-button">
-              <button></button> <i class="fas fa-search fa-xs"></i></button>
+              <button onclick="preventDefault()"><i class="fas fa-search fa-xs"></i></button>
             </div>
           </form>
           <div class="btn-acc">
@@ -131,31 +125,6 @@
 
 </a> 
 
-</ul></div> 
-<div cclass="card" style="width: 18rem;">
-{% for house in house %}
-  <img src="/images/upload/{{ house.imagePath }}" alt="house">
-    <div class="card-body">
-  <p>{{ house.description }}</p>
-  <p>{{ house.name }}</p>
-  <p>{{ house.price }}</p>
-  <p>{{ house.address }}</p>
-  </div>
-</div>
-{% endfor %}
     </div>
   </div> 
 </header> 
-
-
-
-</div>
-{% endblock %} 
-
- 
-
- 
-
- 
-
- 

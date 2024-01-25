@@ -31,7 +31,9 @@ class PublicController extends AbstractController
     #[Route('/accueil', name: 'accueil')]
   public function index()
   {
-      return $this->render('public/accueil.html.twig');
+      return $this->render('public/accueil.html.twig', [
+        "house"=> $this->houseRepo->findAll(),
+      ]);
   }
 
 
@@ -43,37 +45,77 @@ public function userAccount()
 
 
 #[Route('/listcabane', name: 'listcabane')]
-  public function Listcabane()
+  public function Listcabane(HouseRepository $houseRepo, CategoryRepository $categoryRepo)
   {
+    $cabaneCategory = $categoryRepo->findOneBy(['label' => 'cabane']);
+
+    if ($cabaneCategory) {
+        $houses = $houseRepo->findBy(['category' => $cabaneCategory]);
+    } else {
+        $houses = [];
+    }
       return $this->render('public/listCabane.html.twig',[
-    "houses"=> $this->houseRepo->findAll(),
+    "houses"=> $houses,
       ]);
 
   }
 
   #[Route('/listcamping', name: 'listcamping')]
-  public function Listcamping()
+  public function Listcamping(HouseRepository $houseRepo, CategoryRepository $categoryRepo)
   {
-      return $this->render('public/listCamping.html.twig');
+     $campingCategory = $categoryRepo->findOneBy(['label' => 'camping']);
+
+    if ($campingCategory) {
+        $houses = $houseRepo->findBy(['category' => $campingCategory]);
+    } else {
+        $houses = [];
+    }
+      return $this->render('public/listCamping.html.twig',[
+      "houses"=> $houses,
+      ]);
   }
 
  #[Route('/listsurf', name: 'listsurf')]
-  public function Listsurf()
+  public function Listsurf(HouseRepository $houseRepo, CategoryRepository $categoryRepo)
   {
-      return $this->render('public/listSurf.html.twig');
-  }
+ $surfCategory = $categoryRepo->findOneBy(['label' => 'surf']);
+
+    if ($surfCategory) {
+        $houses = $houseRepo->findBy(['category' => $surfCategory]);
+    } else {
+        $houses = [];
+    }
+      return $this->render('public/listSurf.html.twig',[
+      "houses"=> $houses,
+      ]);  }
 
  #[Route('/listmer', name: 'listmer')]
-  public function Listmer()
+  public function Listmer(HouseRepository $houseRepo, CategoryRepository $categoryRepo)
   {
-      return $this->render('public/listMer.html.twig');
-  }
+$merCategory = $categoryRepo->findOneBy(['label' => 'Bord de mer']);
+
+    if ($merCategory) {
+        $houses = $houseRepo->findBy(['category' => $merCategory]);
+    } else {
+        $houses = [];
+    }
+      return $this->render('public/listMer.html.twig',[
+      "houses"=> $houses,
+      ]);  }
 
  #[Route('/listchateau', name: 'listchateau')]
-  public function Listchateau()
+  public function Listchateau(HouseRepository $houseRepo, CategoryRepository $categoryRepo)
   {
-      return $this->render('public/listChateau.html.twig');
-  }
+$chateauCategory = $categoryRepo->findOneBy(['label' => 'chateau']);
+
+    if ($chateauCategory) {
+        $houses = $houseRepo->findBy(['category' => $chateauCategory]);
+    } else {
+        $houses = [];
+    }
+      return $this->render('public/listChateau.html.twig',[
+      "houses"=> $houses,
+      ]);   }
 
 
 #[Route('/login', name: 'login')]

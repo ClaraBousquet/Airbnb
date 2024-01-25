@@ -6,10 +6,11 @@ use App\Entity\House;
 use App\Form\HouseType;
 use App\Repository\HouseRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 #[Route('/house')]
 class HouseController extends AbstractController
@@ -28,8 +29,25 @@ class HouseController extends AbstractController
         $house = new House();
         $form = $this->createForm(HouseType::class, $house);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
+             $imageFile = $form->get('imagePath')->getData();
+        if ($imageFile) {
+            $newFilename = uniqid().'.'.$imageFile->guessExtension();
+
+            try {
+                $imageFile->move(
+                    $this->getParameter('dossier_images'), // Paramètre à définir dans config/services.yaml
+                    $newFilename
+                );
+            } catch (FileException $e) {
+                dd($e);
+                 $this->addFlash('danger', 'Une erreur est survenue lors de l\'upload de l\'image');
+            }
+
+            // Mettre à jour la propriété avec le nom de fichier
+            $house->setImagePath($newFilename);
+        }
+
             $entityManager->persist($house);
             $entityManager->flush();
 

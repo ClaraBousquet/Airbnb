@@ -1,1 +1,17 @@
-<h1>Liste bord de mer</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des logement en bord de mer{% endblock %}
+
+{% block body %}
+<h1>Liste des logements en bord de mer</h1>
+
+{% for house in houses %}
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ house.name }}</h5>
+        <p class="card-text">{{ house.description }}</p>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

@@ -33,10 +33,14 @@ class Annonce
     #[ORM\OneToMany(mappedBy: 'annonce', targetEntity: Images::class)]
     private Collection $image;
 
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'relation')]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->equipements = new ArrayCollection();
         $this->image = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -132,6 +136,33 @@ class Annonce
             if ($image->getAnnonce() === $this) {
                 $image->setAnnonce(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->addRelation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): static
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removeRelation($this);
         }
 
         return $this;

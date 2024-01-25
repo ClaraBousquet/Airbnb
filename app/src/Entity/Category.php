@@ -18,16 +18,20 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $label = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: house::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: House::class)]
     private Collection $house;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: annonce::class)]
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Annonce::class)]
     private Collection $annonce;
+
+    #[ORM\ManyToMany(targetEntity: Annonce::class, inversedBy: 'categories')]
+    private Collection $relation;
 
     public function __construct()
     {
         $this->house = new ArrayCollection();
         $this->annonce = new ArrayCollection();
+        $this->relation = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -103,6 +107,30 @@ class Category
                 $annonce->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Annonce>
+     */
+    public function getRelation(): Collection
+    {
+        return $this->relation;
+    }
+
+    public function addRelation(Annonce $relation): static
+    {
+        if (!$this->relation->contains($relation)) {
+            $this->relation->add($relation);
+        }
+
+        return $this;
+    }
+
+    public function removeRelation(Annonce $relation): static
+    {
+        $this->relation->removeElement($relation);
 
         return $this;
     }
