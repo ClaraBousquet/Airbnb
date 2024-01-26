@@ -37,11 +37,6 @@ class PublicController extends AbstractController
   }
 
 
-#[Route('/userAccount', name: 'userAccount')]
-public function userAccount()
-{
-    return $this->render('public/userAccount.html.twig');
-}
 
 
 #[Route('/listcabane', name: 'listcabane')]

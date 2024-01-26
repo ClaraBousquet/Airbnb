@@ -1,158 +1,27 @@
-{% extends 'base.html.twig' %} 
+{% extends 'base.html.twig' %}
 
+
+
+
+
+
+{% block body %}
  
-
-{% block title %}airbnb{% endblock %} 
-
- 
-
-{% block body %} 
-<header>
-  <div class="containerBod">
-  <div class="empty">
-    <div class="top-navigation">
-      
-      <div class="logo mt-3"><a href="#"><img src="{{ asset('images/logo.png')}}" alt=""></a></div>
-    <nav> 
-      <div class="nav-menu">
-          
-        </div>
-
-          <form class="search"> 
-            <div class="search-inputs">
-              <label for="location"> 
-                <div class="label">Où allez-vous</div>
-                <input name="location" id="location" placeholder="Where are you going?"/>
-              </label>
-              
+      <section class="d-flex gap-5 flex-wrap justify-content-center flex-row">
+        {% for house in house %}
+        <a href="{{ path('app_house_details', {'id': house.id})}}">
+          <div class="card" style="width: 18rem;">
+            <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
+            <div class="card-body">
+              <p class="font">{{ house.description }}</p>
+              <p>{{ house.name }}</p>
+              <p>{{ house.price }}</p>
+              <p>{{ house.address }}</p>
             </div>
-            <div class="search-inputs">
-              <label for="check-in"> 
-                <div class="label">Check in</div>
-                <input type="date" name="check-in" id="check-in" placeholder="Add dates"/>
-              </label>
-            </div>
-            <div class="search-inputs">
-              <label for="check-out"> 
-                <div class="label">Check out</div>
-                <input type="date" name="check-out" id="check-out" placeholder="Add dates"/>
-              </label>
-            </div>
-            <div class="search-inputs">
-              <label for="guests"> 
-                <div class="label">voyageurs</div>
-    <select name="house[numberGuest]" class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-     <option>9</option>
-    <option>10</option>
-
-
-      
-    </select>
-  </div>
-
-              </label>
-      <div class="cta"> 
-        <div>Devenir hébergeur</div>
-     
-            </div>
-            <div class="search-button">
-              <button></button> <i class="fas fa-search fa-xs"></i></button>
-            </div>
-          </form>
-          <div class="btn-acc">
-          <a href="{{ path('login')}}"><button class="btn btn-danger btn-test" type="button">Se Connecter</button></a> 
-          <a href="{{ path('app_house_new')}}"><button class="btn btn-danger" type="button">Ajouter un logement</button></a>
           </div>
-      </nav> <!--   End nav   -->
-
-        <div class="profile-menu">
-          <div class="menu">
-            <span class="fas fa-grip-lines"></span>
-          </div>
-          <div class="profile-pic">
-            <span class="fas fa-user"></span>
-          </div>
-        </div>
-      </div>
+        </a>
+        {% endfor %}
+      </section>
 
 
-<div class="list-container"> 
-
-<ul class="navList"> 
-
-<a href="{{ path('listcabane')}}"> 
-
-<img class="imgList" src="{{ asset('images/cabane.jpg')}}" alt="cabane"> 
-
-<li class="cat">Cabane <br> </li> 
-
-</a> 
-
-<a href="{{ path('listcamping')}}"> 
-
-<img class="imgList" src="{{ asset('images/camping.jpg')}}" alt="camping"> 
-
-<li class="cat">Camping <br></li> 
-
-</a> 
-
-<a href="{{ path ('listsurf')}}"> 
-
-<img class="imgList" src="{{ asset('images/surf.jpg')}}" alt="surf"> 
-
-<li class="cat">Surf <br> </li> 
-
-</a> 
-
-<a href="{{ path ('listmer')}}"> 
-
-<img class="imgList" src="{{ asset('images/mer.jpg')}}" alt="mer"> 
-
-<li class="cat">Bord de Mer <br> </li> 
-
-</a> 
-
-<a href="{{ path ('listchateau')}}"> 
-
-<img class="imgList" src="{{ asset('images/chateau.png')}}" alt="chateau"> 
-
-<li class="cat">Chateau <br></li> 
-
-</a> 
-
-</ul></div> 
-{% for house in house %}
-<div class="card" style="width: 18rem;">
-  <img class="img"  src="/images/upload/{{ house.imagePath }}" alt="house">
-    <div class="card-body">
-  <p>{{ house.description }}</p>
-  <p>{{ house.name }}</p>
-  <p>{{ house.price }}</p>
-  <p>{{ house.address }}</p>
-  </div>
-</div>
-{% endfor %}
-    </div>
-  </div> 
-</header> 
-
-
-
-</div>
-{% endblock %} 
-
- 
-
- 
-
- 
-
- 
+{% endblock %}

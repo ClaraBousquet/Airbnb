@@ -68,6 +68,16 @@ class HouseController extends AbstractController
         ]);
     }
 
+
+#[Route('/{id}/details', name: 'app_house_details', methods: ['GET'])]
+    public function houseDetails(House $house, int $id)
+    {
+        return $this->render('public/houseDetail.html.twig', [
+            'house' => $house,
+            'id' => $id
+        ]);
+    }
+
     #[Route('/{id}/edit', name: 'app_house_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, House $house, EntityManagerInterface $entityManager): Response
     {

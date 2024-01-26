@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ house.name }}{% endblock %}
+
+{% block body %}
+
+<header>
+    <div class="containerBod">
+        <div class="empty">
+            <div class="top-navigation">
+
+                <div class="logo mt-3"><a href="#"><img src="{{ asset('images/logo.png')}}" alt=""></a></div>
+                <nav>
+                    <div class="nav-menu">
+
+                    </div>
+
+                    <form class="search">
+                        <div class="search-inputs">
+                            <label for="location">
+                                <div class="label">Où allez-vous</div>
+                                <input name="location" id="location" placeholder="Où allez-vous?" />
+                            </label>
+
+                        </div>
+                        <div class="search-inputs">
+                            <label for="check-in">
+                                <div class="label">Check in</div>
+                                <input type="date" name="check-in" id="check-in" placeholder="Add dates" />
+                            </label>
+                        </div>
+                        <div class="search-inputs">
+                            <label for="check-out">
+                                <div class="label">Check out</div>
+                                <input type="date" name="check-out" id="check-out" placeholder="Add dates" />
+                            </label>
+                        </div>
+                        <div class="search-inputs">
+                            <label for="guests">
+                                <div class="label">voyageurs</div>
+                                <select name="house[numberGuest]" class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                    <option>6</option>
+                                    <option>7</option>
+                                    <option>8</option>
+                                    <option>9</option>
+                                    <option>10</option>
+
+
+
+                                </select>
+                        </div>
+
+                        </label>
+                        <div class="cta">
+                            <div>Devenir hébergeur</div>
+
+                        </div>
+                        <button class="btn" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                                height="1em" viewBox="0 0 512 512">
+                                <path fill="grey"
+                                    d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34M208 336c-70.7 0-128-57.2-128-128c0-70.7 57.2-128 128-128c70.7 0 128 57.2 128 128c0 70.7-57.2 128-128 128" />
+                            </svg></button>
+                    </form>
+                </nav> <!--   End nav   -->
+                <a href="{{ path('app_house_new')}}"><button class="btn" type="button">Mettre mon logement sur
+                        airbnb</button></a>
+                <div class="btn-acc">
+                             <a href="{{ path('login')}}"><svg class="log" xmlns="http://www.w3.org/2000/svg" width="1em"
+                height="1em" viewBox="0 0 32 32">
+                <path fill="none"
+                  d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0M20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5" />
+                <path fill="grey"
+                  d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0" />
+              </svg></a>
+
+                </div>
+
+                <div class="profile-menu">
+                    <div class="menu">
+                        <span class="fas fa-grip-lines"></span>
+                    </div>
+                    <div class="profile-pic">
+                        <span class="fas fa-user"></span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="d-flex gap-5 flex-wrap justify-content-center flex-row details">
+
+                <div class="card">
+                    <h2>{{ house.name }}</h2>
+                    <h3>{{ house.address }}</h3>
+
+                    <p>{{ house.description }}</p>
+
+                    <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
+                    <p>{{ house.price }}</p>
+                </div>
+            </section>
+
+            <button onclick="showCalender">Réserver</button>
+            {% endblock %}

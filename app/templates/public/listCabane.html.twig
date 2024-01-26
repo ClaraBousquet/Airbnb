@@ -3,15 +3,27 @@
 {% block title %}Liste des cabanes{% endblock %}
 
 {% block body %}
-<h1>Liste des cabanes</h1>
 
-{% for house in houses %}
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">{{ house.name }}</h5>
-        <p class="card-text">{{ house.description }}</p>
-    </div>
-</div>
+<header>
+  
+      <h1>Liste des cabanes</h1>
 
-{% endfor %}
-{% endblock %}
+      <section class="d-flex gap-5 flex-wrap justify-content-center flex-row">
+        {% for house in houses %}
+        <a href="{{ path('app_house_details', {'id': house.id})}}">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ house.name }}</h5>
+              <p class="card-text">{{ house.description }}</p>
+              <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
+
+            </div>
+          </div>
+        </a>
+
+        {% endfor %}
+
+      </section>
+
+      {% endblock %}

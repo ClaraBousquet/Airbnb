@@ -3,15 +3,20 @@
 {% block title %}Liste des surfcamps{% endblock %}
 
 {% block body %}
-<h1>Liste des surfcamps</h1>
 
-{% for house in houses %}
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">{{ house.name }}</h5>
-        <p class="card-text">{{ house.description }}</p>
-    </div>
-</div>
+<header>
+  
+      <h1>Liste des surfcamps</h1>
 
-{% endfor %}
-{% endblock %}
+      {% for house in houses %}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ house.name }}</h5>
+          <p class="card-text">{{ house.description }}</p>
+          <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
+
+        </div>
+      </div>
+
+      {% endfor %}
+      {% endblock %}

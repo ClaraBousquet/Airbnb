@@ -62,6 +62,9 @@ private Collection $equipements;
     #[Vich\UploadableField(mapping: "house", fileNameProperty: "filename")]
     private ?File $imageFile = null;
 
+    #[ORM\ManyToOne(inversedBy: 'House')]
+    private ?User $user = null;
+
     public function __construct()
     {
         $this->annonces = new ArrayCollection();
@@ -256,6 +259,18 @@ public function getImageFile(): ?File
     public function setUpdateAt(?\DateTimeImmutable $updateAt): static
     {
         $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
