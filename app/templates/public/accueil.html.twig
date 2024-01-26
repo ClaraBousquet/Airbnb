@@ -1,16 +1,12 @@
 {% extends 'base.html.twig' %}
 
 
-
-
-
-
 {% block body %}
  
       <section class="d-flex gap-5 flex-wrap justify-content-center flex-row">
         {% for house in house %}
         <a href="{{ path('app_house_details', {'id': house.id})}}">
-          <div class="card" style="width: 18rem;">
+          <div class="card" style="width: 25rem;">
             <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
             <div class="card-body">
               <p class="font">{{ house.description }}</p>

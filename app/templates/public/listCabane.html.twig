@@ -12,7 +12,7 @@
         {% for house in houses %}
         <a href="{{ path('app_house_details', {'id': house.id})}}">
 
-          <div class="card">
+          <div class="card" style="width: 25rem;">
             <div class="card-body">
               <h5 class="card-title">{{ house.name }}</h5>
               <p class="card-text">{{ house.description }}</p>

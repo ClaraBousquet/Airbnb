@@ -7,9 +7,10 @@
 <header>
   
       <h1>Liste des surfcamps</h1>
+      <section class="d-flex gap-5 flex-wrap justify-content-center flex-row">
 
       {% for house in houses %}
-      <div class="card">
+      <div class="card" style="width: 25rem;">
         <div class="card-body">
           <h5 class="card-title">{{ house.name }}</h5>
           <p class="card-text">{{ house.description }}</p>
@@ -19,4 +20,5 @@
       </div>
 
       {% endfor %}
+      </section>
       {% endblock %}
