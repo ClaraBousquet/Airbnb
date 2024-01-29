@@ -4781,7 +4781,7 @@
             "version": "v7.0.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/var-dumper.git",
+                "url": "https://github.com/symfony/var-.git",
                 "reference": "5f6f1a527002068f6d40fda068399220eabebf71"
             },
             "dist": {

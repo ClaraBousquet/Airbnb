@@ -7,3 +7,7 @@ controllers:
 logout:
     path: /logout
     controller: App\Controller\PublicController::logout
+
+reservation:
+    path: /reservation
+    controller: App\Controller\HouseController::reservation

@@ -3,14 +3,19 @@
 namespace App\Controller;
 
 use App\Entity\House;
+use App\Repository\UserRepository;
+use App\Repository\HouseRepository;
 use App\Repository\AnnonceRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\EquipementsRepository;
-use App\Repository\HouseRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\Loader\Configurator\session;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class PublicController extends AbstractController
 {
@@ -19,13 +24,15 @@ class PublicController extends AbstractController
     private $annoncesRepo;
     private $categoryRepo;
     private $houseRepo;
+    private $userRepo;
 
-    public function __construct(EquipementsRepository $equipementsRepo , AnnonceRepository $annoncesRepo, CategoryRepository $categoryRepo, HouseRepository $houseRepo)
+    public function __construct(EquipementsRepository $equipementsRepo , AnnonceRepository $annoncesRepo, CategoryRepository $categoryRepo, HouseRepository $houseRepo, UserRepository $userRepo)
     {
         $this->equipementsRepo = $equipementsRepo;
         $this->annoncesRepo = $annoncesRepo;
         $this->categoryRepo = $categoryRepo;
         $this->houseRepo = $houseRepo;
+        $this->userRepo = $userRepo;
     }
 
     #[Route('/accueil', name: 'accueil')]
@@ -113,11 +120,26 @@ $chateauCategory = $categoryRepo->findOneBy(['label' => 'chateau']);
       ]);   }
 
 
-#[Route('/login', name: 'login')]
-public function login()
-{
-    return $this->render('public/login.html.twig');
-}
+// #[Route('/login', name: 'login')]
+// public function login(AuthenticationUtils $authenticationUtils): Response
+// {
+//             $error = $authenticationUtils->getLastAuthenticationError();
+//             $lastUsername = $authenticationUtils->getLastUsername();
+//     return $this->render('security/login.html.twig',[
+//            "user"=> $this->userRepo->findAll(),
+//            "error" => $error,
+//            "email"=>$this->userRepo->findAll(),
+//            "lastUsername" => $lastUsername,
+           
+//     ]);
+ 
+// }
+
+   #[Route(path: '/logout', name: 'app_logout')]
+    public function logout(): void
+    {
+        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+    }
 
 
 #[Route('/formLogement', name: 'formLogement')]
@@ -143,5 +165,16 @@ public function submitLogement(Request $request, EntityManagerInterface $entityM
 
     return $this->redirectToRoute('accueil');
 }
+
+
+#[Route('/myHouses', name: 'myHouses')]
+public function myHouses(SessionInterface $session)
+{
+    $userHouses = $session->get('user_houses', []);
+    return $this->render('public/myHouses.html.twig', [
+        'userHouses' => $userHouses,
+    ]);
+}
+
  
 }

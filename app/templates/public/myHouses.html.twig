@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes logements{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Mes logements</h1>
+                <ul>
+                    {% for house in userHouses %}
+                        <li>{{ house.name }} - {{ house.description }}</li>
+                                            <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
+                    <p>{{ house.price }}</p>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

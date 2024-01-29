@@ -395,9 +395,11 @@ height: 100%;
   background-color: white;
 }
 
-
-
-
+body{position: relative;}
+.foot{
+  width: 100%;
+  position: absolute;bottom: 0; right :0;
+}
 
 header {
   height: 70vh;

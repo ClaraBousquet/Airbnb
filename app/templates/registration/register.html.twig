@@ -3,17 +3,18 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+    <h1>Je créer un compte</h1>
 
     {{ form_errors(registrationForm) }}
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.email, { label: 'Addresse Email' }) }}
         {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
+            label: 'Mot de Passe'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        {{ form_row(registrationForm.isHost, { label: 'Je suis un hébergeur' }) }}
+        {{ form_row(registrationForm.agreeTerms, { label: 'J\'accepte les conditions d\'utilisation' }) }}
 
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn btn-danger">Créer le compte !</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

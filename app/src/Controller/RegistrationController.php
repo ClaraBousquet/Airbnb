@@ -29,10 +29,6 @@ public function register(Request $request, UserPasswordHasherInterface $userPass
             )
         );
 
-        // Set 'isHost' to false if null
-        if (null === $user->isIsHost()) {
-            $user->setIsHost(false);
-        }
 
         $entityManager->persist($user);
         $entityManager->flush();

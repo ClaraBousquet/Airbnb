@@ -13,11 +13,17 @@
                     <h3>{{ house.address }}</h3>
 
                     <p>{{ house.description }}</p>
-
+<a href="{{ path('accueil') }}">Réserver</a>
+        </form>
                     <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
                     <p>{{ house.price }}</p>
+                     <h4>Équipements:</h4>
+        <ul>
+            {% for equipement in house.equipements %}
+                <li>{{ equipement.label }}</li>
+            {% endfor %}
+        </ul>
                 </div>
             </section>
 
-            <button >Réserver</button>
             {% endblock %}
