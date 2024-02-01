@@ -2,49 +2,50 @@
 
 namespace App\Form;
 
-use App\Entity\Category;
-use App\Entity\Equipements;
-use App\Entity\House;
 use App\Entity\User;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\House;
+use App\Entity\Reservation;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class ReservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('description')
-            ->add('name')
-            ->add('imagePath')
-            ->add('numberRooms')
-            ->add('numberGuest')
-            ->add('Price')
-            ->add('address')
-            ->add('fileName')
-            ->add('updateAt')
-            ->add('category', EntityType::class, [
-                'class' => Category::class,
-'choice_label' => 'id',
+            ->add('house', EntityType::class, [
+                'class' => House::class,
+                'choice_label' => 'description',
             ])
-            ->add('equipements', EntityType::class, [
-                'class' => Equipements::class,
-'choice_label' => 'id',
-'multiple' => true,
+            ->add('startDate', DateTimeType::class, [
+                'widget' => 'single_text',
             ])
+            ->add('endDate', DateTimeType::class, [
+                'widget' => 'single_text',
+            ])
+            ->add('totalPrice', MoneyType::class)
             ->add('user', EntityType::class, [
                 'class' => User::class,
-'choice_label' => 'id',
+                'choice_label' => 'id',
             ])
+            ->add('user_name', TextType::class, [
+    'label' => 'User Name',
+    'required' => false, 
+])
         ;
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => House::class,
+            'data_class' => Reservation::class,
         ]);
     }
 }

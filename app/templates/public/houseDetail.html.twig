@@ -3,27 +3,25 @@
 {% block title %}{{ house.name }}{% endblock %}
 
 {% block body %}
+<section class="d-flex gap-5 testt text-center flex-wrap justify-content-center flex-row details justify-content-center align-items-center">
+    <div class="card w-50">
+        <h2>{{ house.name }}</h2>
+        <h3>{{ house.address }}</h3>
+        <p>{{ house.description }}</p>
+        <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
+    </div>
 
-
-
-            <section class="d-flex gap-5 testt flex-wrap justify-content-center flex-row details">
-
-                <div class="card">
-                    <h2>{{ house.name }}</h2>
-                    <h3>{{ house.address }}</h3>
-
-                    <p>{{ house.description }}</p>
-<a href="{{ path('reservation')}}">Réserver</a>
-        </form>
-                    <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
-                    <p>{{ house.price }}</p>
-                     <h4>Équipements:</h4>
+    <div class="ml-4, d-flex, flex-column"> 
+       <h4>Prix à la nuit:</h4>
+        <p>{{ house.price }}</p>
+        <h4>Équipements:</h4>
         <ul>
             {% for equipement in house.equipements %}
                 <li>{{ equipement.label }}</li>
             {% endfor %}
         </ul>
-                </div>
-            </section>
+        <a class="btn btn-danger resa" href="{{ path('reservation')}}">Réserver</a>
+    </div>
+</section>
 
-            {% endblock %}
+{% endblock %}

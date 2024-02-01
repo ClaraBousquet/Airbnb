@@ -14,6 +14,11 @@ class Reservation
     #[ORM\Column]
     private ?int $id = null;
 
+/**
+ * @ORM\Column(type="string", nullable=true)
+ */
+private ?string $user_name = null;
+
     #[ORM\ManyToOne(inversedBy: 'reservations')]
     private ?User $user = null;
 
@@ -93,4 +98,16 @@ class Reservation
 
         return $this;
     }
+
+    public function getUserName(): ?string
+{
+    return $this->user_name;
+}
+
+public function setUserName(?string $userName): self
+{
+    $this->user_name = $userName;
+
+    return $this;
+}
 }
