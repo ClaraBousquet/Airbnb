@@ -1,32 +1,31 @@
 
-
 {% block body %}
       <div class="top-navigation">
 
-        <div class="logo mt-3"><a href="#"><img src="{{ asset('images/logo.png')}}" alt=""></a></div>
         <nav>
           <div class="nav-menu">
 
           </div>
 
           <form class="search">
-            <div class="search-inputs">
+        <div class="logo mt-3"><a href="{{ path('accueil')}}"><img src="{{ asset('images/logo.png')}}" alt=""></a></div>
+            <div class="search-inputs divider ">
               <label for="location">
                 <div class="label">Où allez-vous</div>
-                <input name="location" id="location" placeholder="Où allez-vous?" />
+                <input name="location" id="location" placeholder="Où allez-vous?" class="inout" />
               </label>
 
             </div>
-            <div class="search-inputs">
+            <div class="search-inputs divider">
               <label for="check-in">
                 <div class="label">Check in</div>
-                <input type="date" name="check-in" id="check-in" placeholder="Add dates" />
+                <input type="date" name="check-in" id="check-in" placeholder="Add dates" class="inout" />
               </label>
             </div>
-            <div class="search-inputs">
+            <div class="search-inputs divider">
               <label for="check-out">
                 <div class="label">Check out</div>
-                <input type="date" name="check-out" id="check-out" placeholder="Add dates" />
+                <input type="date" name="check-out" id="check-out" placeholder="Add dates"  class="inout"/>
               </label>
             </div>
             <div class="search-inputs">
@@ -50,40 +49,36 @@
             </div>
 
             </label>
-            <div class="cta">
-              <div>Devenir hébergeur</div>
+       <div class="cta">
+    {% if app.user and app.user.isIsHost %}
+        <a href="{{ path('app_house_new') }}">
+            <button class="btn btn-bold " type="button">Mettre mon logement sur airbnb</button>
+        </a>
+    {% endif %}
 
+    <div class="dropdown">
+        {% if app.user %}
+            <a href="#" class="dropdown-toggle link">
+                <svg class="log" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 256 256">
+                    <path fill="lightgray" d="M144 80a8 8 0 0 1 8-8h96a8 8 0 0 1 0 16h-96a8 8 0 0 1-8-8m104 40h-96a8 8 0 0 0 0 16h96a8 8 0 0 0 0-16m0 48h-72a8 8 0 0 0 0 16h72a8 8 0 0 0 0-16m-96.25 22a8 8 0 0 1-5.76 9.74a7.55 7.55 0 0 1-2 .26a8 8 0 0 1-7.75-6c-6.16-23.94-30.34-42-56.25-42s-50.09 18.05-56.25 42a8 8 0 0 1-15.5-4c5.59-21.71 21.84-39.29 42.46-48a48 48 0 1 1 58.58 0c20.63 8.71 36.88 26.29 42.47 48M80 136a32 32 0 1 0-32-32a32 32 0 0 0 32 32"/>
+                </svg>
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ path('myHouses') }}">Voir mes logements</a>
+                <a class="dropdown-item" href="{{ path('reservation') }}">Voir mes réservations</a>
+                <a class="dropdown-item" href="{{ path('app_logout') }}">Se déconnecter</a>
             </div>
-            <button class="btn" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
-                viewBox="0 0 512 512">
-                <path fill="grey"
-                  d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34M208 336c-70.7 0-128-57.2-128-128c0-70.7 57.2-128 128-128c70.7 0 128 57.2 128 128c0 70.7-57.2 128-128 128" />
-              </svg></button>
+        {% else %}
+            <a class="link" href="{{ path('app_login') }}">Se connecter</a>
+        {% endif %}
+    </div>
+</div>
+
+
           </form>
         </nav> <!--   End nav   -->
-        {% if app.user and app.user.isIsHost%}
-        <a href="{{ path('app_house_new')}}"><button class="btn" type="button">Mettre mon logement sur
-            airbnb</button></a>
-            <a href="{{ path('myHouses')}}">Voir mes logements</a>
-        {% endif%}
 
-        <a href="{{ path('reservation')}}">Voir mes réservations</a>
 
-        <div class="dropdown">
-    {% if app.user %}
-    <a href="{{ path('app_logout') }}">Se déconnecter</a>
-{% else %}
-    <a href="{{ path('app_login') }}">Se connecter
-    </a>
-{% endif %}
-          <a href="{{ path('app_login')}}"><svg class="log" xmlns="http://www.w3.org/2000/svg" width="1em"
-                height="1em" viewBox="0 0 32 32">
-                <path fill="none"
-                  d="M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0M20.5 12.5A4.5 4.5 0 1 1 16 8a4.5 4.5 0 0 1 4.5 4.5" />
-                <path fill="grey"
-                  d="M26.749 24.93A13.99 13.99 0 1 0 2 16a13.899 13.899 0 0 0 3.251 8.93l-.02.017c.07.084.15.156.222.239c.09.103.187.2.28.3c.28.304.568.596.87.87c.092.084.187.162.28.242c.32.276.649.538.99.782c.044.03.084.069.128.1v-.012a13.901 13.901 0 0 0 16 0v.012c.044-.031.083-.07.128-.1c.34-.245.67-.506.99-.782c.093-.08.188-.159.28-.242c.302-.275.59-.566.87-.87c.093-.1.189-.197.28-.3c.071-.083.152-.155.222-.24ZM16 8a4.5 4.5 0 1 1-4.5 4.5A4.5 4.5 0 0 1 16 8M8.007 24.93A4.996 4.996 0 0 1 13 20h6a4.996 4.996 0 0 1 4.993 4.93a11.94 11.94 0 0 1-15.986 0" />
-              </svg></a>
-</div>
 {# <div class="_3hmsj">
 <div class="_167wsvl" data-profile-menu-open="false">
 <button type="button" class=" bonhomme cnky2vc atm_1s_glywfm atm_26_1j28jx2 atm_9j_tlke0l atm_bx_1kw7nm4 atm_c8_1kw7nm4 atm_cs_1kw7nm4 atm_gi_idpfg4 atm_ks_ewfl5b atm_r3_1kw7nm4 atm_rd_glywfm atm_vb_1wugsn5 atm_kd_glywfm atm_h_1h6ojuz atm_2d_1hbpp16 atm_3f_gblsx8 atm_5j_1rwtgmb atm_7l_18pqv07 atm_9s_116y0ak atm_e2_12oa1m8 atm_l8_ef04uq atm_mk_h2mmj6 atm_vh_nkobfv atm_uc_x37zl0 atm_wq_kb7nvz atm_g3_qnbkur atm_3f_glywfm_jo46a5 atm_l8_idpfg4_jo46a5 atm_gi_idpfg4_jo46a5 atm_3f_glywfm_1icshfk atm_kd_glywfm_19774hq atm_uc_glywfm__p88qr9 atm_uc_ryfd4z_1w3cfyq atm_70_8poa96_1w3cfyq atm_uc_glywfm_1w3cfyq_p88qr9 atm_uc_ryfd4z_18zk5v0 atm_70_8poa96_18zk5v0 atm_uc_glywfm_18zk5v0_p88qr9 c1r2bm7w atm_70_1841pj7_1nos8r cln384f atm_1ieuuo9_1vi7ecw atm_1dfygl2_fyhuej atm_1lqvdwn_1ul9x4n atm_f4syw5_ftgil2 atm_1255xc1_dlk8xv atm_1ellefq_12etsqc atm_vl4zd4_t94yts dir dir-ltr" aria-expanded="false" aria-label="Menu de navigation principal" data-testid="cypress-headernav-profile"><div class=" dir dir-ltr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; fill: none; height: 16px; width: 16px; stroke: currentcolor; stroke-width: 3; overflow: visible;"><g fill="none"><path d="M2 16h28M2 24h28M2 8h28"></path></g></svg></div><div class="fs7xov7 atm_7l_12u4tyr atm_am_sfpmae atm_e2_x4u3u4 atm_gz_1qdqwt3 atm_ks_15vqwwr atm_mk_h2mmj6 atm_vy_x4u3u4 atm_wq_kb7nvz dir dir-ltr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" aria-hidden="true" role="presentation" focusable="false" style="display: block; height: 100%; width: 100%; fill: currentcolor;"><path d="M16 .7C7.56.7.7 7.56.7 16S7.56 31.3 16 31.3 31.3 24.44 31.3 16 24.44.7 16 .7zm0 28c-4.02 0-7.6-1.88-9.93-4.81a12.43 12.43 0 0 1 6.45-4.4A6.5 6.5 0 0 1 9.5 14a6.5 6.5 0 0 1 13 0 6.51 6.51 0 0 1-3.02 5.5 12.42 12.42 0 0 1 6.45 4.4A12.67 12.67 0 0 1 16 28.7z"></path></svg></div></button>
@@ -101,6 +96,7 @@
         </div>
       </div>
 
+<hr class="nav-divider" />
 
       <div class="list-container">
 

@@ -1,63 +1,47 @@
 {# {% extends 'base.html.twig' %} 
 {% block title %}Réserver{% endblock %}
 
-{% block content %}
-  <form action="" class="thecontainer booking" name="booking">
-       <div class="thecontainer calendar">
-     <div class="resaheader"></div> 
-     <div id="overlay"></div> 
-		 <div class="icon arr prev"></div>
-		 <div class="month">MAI 2018</div>
-		 <div class="icon arr next"></div>
-<!-- construction du Calendrier grace au Tableau --> 
-    <table>
-			<tr>
-				<th>Dim</th><th>Lun</th><th>Mar</th><th>Mer</th><th>Jeu</th><th>Ven</th><th>Sam</th>
-			</tr>
-			<tr>
-				<td class="notCurMonth">29</td><td class="notCurMonth">30</td>
-				<td>1</td><td>2</td><td class="curDay">3</td><td>4</td><td>5</td>
-			</tr>
-			<tr>
-				<td>6</td><td class="holiday">7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
-			</tr>
-			<tr>
-				<td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
-			</tr>
-			<tr>
-				<td>20</td><td>21</td><td>22</td><td class="holiday">23</td><td>24</td><td>25</td><td>26</td>
-			</tr>
-			<tr>
-				<td>27</td><td>28</td><td>29</td><td>30</td>
-				<td class="notCurMonth">1</td><td class="notCurMonth">2</td class="notCurMonth"><td class="notCurMonth">3</td>
-			</tr>
-		</table>
- <!-- bouton de recherche de date -->   
-		<button class="button-big" id="add_event">rechercher une date</button>
-	</div>
-<!-- Bouton Arrivée -->	  
-    <div class="dates" data-type="none">
-			<label for="checkin">Arrivée</label>
-			<div class="input-text">
-				<input type="datetime" value="01 MAI, 2018" id="checkin" readonly>
-				<div class="icon pop-up"></div>
-      </div>
-	<label for="checkout">Départ</label>
-			<div class="input-text">
-				<input type="datetime" value="01 MAI, 2018" id="checkout" readonly>
-				<div class="icon pop-up"></div>
-			</div>
-<label>Adultes</label>
-				<div class="input-text">
-					<select name="adults">
-						<option value="1">1</option>
-						<option value="2" selected="selected">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>   
-					</select>
-					<div class="icon"></div>
-				</div>
+{% block body %}
 
-                 <button class="button-big" id="search"><div class="icon"></div>Rechercher</button>
-                 </form></div>
+<form class="booking-form" action="#" method="post">
+  <div class="elem-group">
+    <label for="name">Votre Nom</label>
+    <input type="text" id="name" name="visitor_name" placeholder="John Doe" pattern=[A-Z\sa-z]{3,20} required>
+  </div>
+  <div class="elem-group">
+    <label for="email">Votre addresse E-mail</label>
+    <input type="email" id="email" name="visitor_email" placeholder="john.doe@email.com" required>
+  </div>
+  <div class="elem-group">
+    <label for="phone">Votre téléphone</label>
+    <input type="tel" id="phone" name="visitor_phone" placeholder="0602030405" pattern=(\d{3})-?\s?(\d{3})-?\s?(\d{4}) required>
+  </div>
+  <hr>
+  <div class="elem-group inlined">
+    <label for="adult">Nombre d'adultes</label>
+    <input type="number" id="adult" name="total_adults" placeholder="2" min="1" required>
+  </div>
+  <div class="elem-group inlined">
+    <label for="child">Nombre d'enfants</label>
+    <input type="number" id="child" name="total_children" placeholder="2" min="0" required>
+  </div>
+  <div class="elem-group inlined">
+    <label for="checkin-date">Date d'arrivée</label>
+    <input type="date" id="checkin-date" name="checkin" required>
+  </div>
+  <div class="elem-group inlined">
+    <label for="checkout-date">Date de départ</label>
+    <input type="date" id="checkout-date" name="checkout" required>
+  </div>
+  
+  <hr>
+  <div class="elem-group">
+    <label for="message">Autre chose ?</label>
+    <textarea id="message" name="visitor_message" placeholder="Faites nous savoir si il ya quelque chose qui pourrait être important" required></textarea>
+  </div>
+  <button class="btn btn-danger"type="submit">Réserver la chambre <a href="{{ path('reservationConf')}}"></a></button>
+</form>
+
+
+
 {% endblock %} #}

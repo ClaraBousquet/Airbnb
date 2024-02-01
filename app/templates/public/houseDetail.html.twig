@@ -6,14 +6,14 @@
 
 
 
-            <section class="d-flex gap-5 flex-wrap justify-content-center flex-row details">
+            <section class="d-flex gap-5 testt flex-wrap justify-content-center flex-row details">
 
                 <div class="card">
                     <h2>{{ house.name }}</h2>
                     <h3>{{ house.address }}</h3>
 
                     <p>{{ house.description }}</p>
-<a href="{{ path('accueil') }}">Réserver</a>
+<a href="{{ path('reservation')}}">Réserver</a>
         </form>
                     <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
                     <p>{{ house.price }}</p>

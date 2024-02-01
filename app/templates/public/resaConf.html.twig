@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Confirmation de Réservation{% endblock %}
+
+{% block body %}
+    <h1>Confirmation de Réservation</h1>
+
+    <h2>Voici les détails de votre réservation :</h2>
+    
+    <ul>
+        <li><strong>Nom:</strong> {{ reservationData.visitor_name }}</li>
+        <li><strong>Email:</strong> {{ reservation_data.visitor_email }}</li>
+        <li><strong>Téléphone:</strong> {{ reservation_data.visitor_phone }}</li>
+        <li><strong>Adultes:</strong> {{ reservation_data.total_adults }}</li>
+        <li><strong>Enfants:</strong> {{ reservation_data.total_children }}</li>
+        <li><strong>Date d'arrivée:</strong> {{ reservation_data.checkin }}</li>
+        <li><strong>Date de départ:</strong> {{ reservation_data.checkout }}</li>
+        <li><strong>Préférence de chambre:</strong> {{ reservation_data.room_preference }}</li>
+        <li><strong>Message:</strong> {{ reservation_data.visitor_message }}</li>
+    </ul>
+
+
+{% endblock %}

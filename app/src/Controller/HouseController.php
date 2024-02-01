@@ -62,7 +62,7 @@ class HouseController extends AbstractController
           // Mettre à jour la session avec la liste mise à jour
         $session->set('user_houses', $userHouses);
 
-            return $this->redirectToRoute('app_house_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('myHouses', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('house/new.html.twig', [
@@ -89,22 +89,6 @@ class HouseController extends AbstractController
         ]);
     }
 
-#[Route('/{id}/reserve', name: 'app_house_reserve', methods: ['POST'])]
-public function reserveHouse(House $house, SessionInterface $session)
-{
-    // Récupérez la liste actuelle des réservations de l'utilisateur depuis la session
-    $userReservations = $session->get('user_reservations', []);
-
-    // Ajoutez la maison réservée à la liste des réservations
-    $userReservations[] = $house->getId();
-
-    // Mettez à jour la session avec la nouvelle liste de réservations
-    $session->set('user_reservations', $userReservations);
-
-    // Redirigez l'utilisateur vers la page de détails de la maison ou toute autre page appropriée
-    // Vous pouvez également afficher un message de confirmation ici
-    return $this->redirectToRoute('app_house_details', ['id' => $house->getId()]);
-}
 
     #[Route('/{id}/edit', name: 'app_house_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, House $house, EntityManagerInterface $entityManager): Response
@@ -136,12 +120,23 @@ public function reserveHouse(House $house, SessionInterface $session)
     }
 
 
+
 #[Route('/reservation', name: 'reservation')]
-public function reservation(SessionInterface $session)
+public function reservation()
 {
-    $userHouses = $session->get('user_houses', []);
-    return $this->render('public/reservations.html.twig', [
-        'reservations' => $userHouses,
+    
+}
+
+#[Route('/reservationConf', name: 'reservationConf')]
+public function reservationConf(SessionInterface $session, House $house)
+{
+    // Récupérez les données de réservation de la session
+    $reservationData = $session->get('reservation_data', []);
+
+    return $this->render('public/resaConf.html.twig', [
+        'reservationData' => $reservationData,
+        'house' => $house
     ]);
 }
+
 }

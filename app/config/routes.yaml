@@ -11,3 +11,8 @@ logout:
 reservation:
     path: /reservation
     controller: App\Controller\HouseController::reservation
+
+app_house_reservation_conf:
+    path: '/reservation/conf'
+    controller: 'App\Controller\HouseController::reservationConf'
+    methods: ['GET']

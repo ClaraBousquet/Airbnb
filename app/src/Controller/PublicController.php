@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\Loader\Configurator\session;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Knp\Component\Pager\PaginatorInterface;
 
 class PublicController extends AbstractController
 {
@@ -175,6 +176,8 @@ public function myHouses(SessionInterface $session)
         'userHouses' => $userHouses,
     ]);
 }
+
+
 
  
 }
