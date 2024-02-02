@@ -4,12 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Reservation;
 use App\Form\ReservationType;
-use App\Repository\ReservationRepository;
+use Symfony\Component\Form\FormError;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\ReservationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/reservation')]
 class ReservationController extends AbstractController
@@ -30,13 +31,22 @@ class ReservationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-             $userName = $form->get('user_name')->getData();
-             $reservation->setUserName($userName);
+            $startDate = $reservation->getStartDate();
+            $endDate = $reservation->getEndDate();
+            $house = $reservation->getHouse();
 
-            $entityManager->persist($reservation);
-            $entityManager->flush();
+            if ($startDate < $endDate) {
+                $interval = $startDate->diff($endDate);
+                $numberOfNights = $interval->days;
 
-            return $this->redirectToRoute('accueil', [], Response::HTTP_SEE_OTHER);
+
+                $entityManager->persist($reservation);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('accueil', [], Response::HTTP_SEE_OTHER);
+            } else {
+                $form->get('startDate')->addError(new FormError('La date de début doit être antérieure à la date de fin.'));
+            }
         }
 
         return $this->render('reservation/new.html.twig', [
@@ -44,6 +54,7 @@ class ReservationController extends AbstractController
             'form' => $form,
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_reservation_show', methods: ['GET'])]
     public function show(Reservation $reservation): Response
@@ -74,7 +85,7 @@ class ReservationController extends AbstractController
     #[Route('/{id}', name: 'app_reservation_delete', methods: ['POST'])]
     public function delete(Request $request, Reservation $reservation, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$reservation->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $reservation->getId(), $request->request->get('_token'))) {
             $entityManager->remove($reservation);
             $entityManager->flush();
         }

@@ -3,9 +3,8 @@
 {% block title %} Reservation{% endblock %}
 
 {% block body %}
-    <h1>Nouvelle Réservation</h1>
+    <h1 class="formCont">Nouvelle Réservation</h1><br><br>
 
     {{ include('reservation/_form.html.twig') }}
 
-    <a href="{{ path('app_reservation_index') }}">back to list</a>
 {% endblock %}

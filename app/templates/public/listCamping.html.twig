@@ -5,17 +5,23 @@
 {% block body %}
 <header>
  
-      <h1>Liste des campings</h1>
+      <h1 class="title">Liste des campings</h1>
+      <section class="d-flex gap-5 flex-wrap justify-content-center flex-row">
 
       {% for house in houses %}
+              <a href="{{ path('app_house_details', {'id': house.id})}}">
+
       <div class="card" style="width: 25rem;">
         <div class="card-body">
           <h5 class="card-title">{{ house.name }}</h5>
           <p class="card-text">{{ house.description }}</p>
+                        <p>{{ house.price }}</p>
+
           <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
 
         </div>
       </div>
-
+              </a>
       {% endfor %}
+      </section>
       {% endblock %}

@@ -20,7 +20,12 @@
                 <li>{{ equipement.label }}</li>
             {% endfor %}
         </ul>
-        <a class="btn btn-danger resa" href="{{ path('reservation')}}">Réserver</a>
+        
+{# condition pour afficher le bouton seulement si l'user est connecté #}
+        {% if app.user %}
+        <a class="btn btn-danger resa" href="{{ path('app_reservation_new', {'id': house.id})}}">Réserver</a>
+        {% endif %}
+
     </div>
 </section>
 
