@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur 404 - Page non trouvée{% endblock %}
+
+{% block body %}
+    <div class="error-page">
+        <h1>Erreur 404 - Page non trouvée</h1>
+        <p>Désolé, la page que vous recherchez n'existe pas.</p>
+        <a href="{{ path('accueil') }}" class="btn btn-primary">Retour à la page d'accueil</a>
+    </div>
+{% endblock %}

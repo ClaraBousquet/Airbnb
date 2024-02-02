@@ -10,18 +10,19 @@
 
       <section class="d-flex gap-5 flex-wrap justify-content-center flex-row">
         {% for house in houses %}
-        <a href="{{ path('app_house_details', {'id': house.id})}}">
-
-          <div class="card" style="width: 25rem;">
-            <div class="card-body">
-              <h5 class="card-title">{{ house.name }}</h5>
-              <p class="card-text">{{ house.description }}</p>
-              <p>{{ house.price }}</p>
-              <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
-
-            </div>
-          </div>
-        </a>
+        <a class="ah" href="{{ path('app_house_details', {'id': house.id})}}">
+<div class="imcard" style="width: 25rem;">
+      <div class="rounded-image">
+        <img class="img house-image" src="/images/upload/{{ house.imagePath }}" alt="house">
+      </div>
+      <div class="card-body">
+        {# <p class="font">{{ house.description }}</p> #}
+        <p class="font">{{ house.name }}</p>
+        <p class="desc">{{ house.address }}</p>
+        <p class="price">{{ house.price }}</p>
+      </div>
+    </div>
+  </a>
 
         {% endfor %}
 
