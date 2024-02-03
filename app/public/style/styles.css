@@ -33,6 +33,31 @@ nav {
   color: #696767;
 }
 
+.imgDet {
+  width: 50%;
+  margin-left: 20px;
+  margin-right: 20px;
+  border-radius: 10%;
+}
+
+.first-section {
+  width: 60%;
+  height: 100%;
+  margin-left: 100px;
+}
+
+.second-section {
+  width: 40%;
+  height: 90%;
+}
+
+.catego {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
 
 .log {
   margin-top: 30%;
@@ -59,6 +84,7 @@ a:hover {
   float: none;
   vertical-align: top;
 }
+
 
 .img {
   max-width: 100%;

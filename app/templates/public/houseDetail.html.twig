@@ -3,15 +3,15 @@
 {% block title %}{{ house.name }}{% endblock %}
 
 {% block body %}
-<section class="d-flex gap-5 testt text-center flex-wrap justify-content-center flex-row details justify-content-center align-items-center">
-    <div class="card w-50">
+<section class="d-flex align-items-center catego">
+    <div class="first-section">
         <h2>{{ house.name }}</h2>
         <h3>{{ house.address }}</h3>
         <p>{{ house.description }}</p>
-        <img class="img" src="/images/upload/{{ house.imagePath }}" alt="house">
+        <img class="imgDet" src="/images/upload/{{ house.imagePath }}" alt="house">
     </div>
 
-    <div class="ml-4, d-flex, flex-column"> 
+    <div class="second-section" > 
        <h4>Prix à la nuit:</h4>
         <p>{{ house.price }}</p>
         <h4>Équipements:</h4>
@@ -25,7 +25,7 @@
         {% if app.user %}
         <a class="btn btn-danger resa" href="{{ path('app_reservation_new', {'id': house.id})}}">Réserver</a>
         {% endif %}
-
+<a class="btn btn-danger" href="{{ path('accueil')}}">Retour</a>
     </div>
 </section>
 
